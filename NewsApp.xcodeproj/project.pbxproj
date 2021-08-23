@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB0C9D0726CE57370042F262 /* NewsListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C9D0626CE57370042F262 /* NewsListError.swift */; };
 		CB45F57226D43828009E49F3 /* SupportingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB45F57126D43828009E49F3 /* SupportingViews.swift */; };
+		CB45F57426D4517E009E49F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB45F57326D4517E009E49F3 /* NetworkError.swift */; };
 		CB4E160626D1204B007AA7FD /* NewsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */; };
 		CB4E160A26D12897007AA7FD /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160926D12897007AA7FD /* MockAPIService.swift */; };
 		CB4E161026D16C6D007AA7FD /* NewsListRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160F26D16C6D007AA7FD /* NewsListRequestTests.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		CB0C9D0626CE57370042F262 /* NewsListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListError.swift; sourceTree = "<group>"; };
 		CB45F57126D43828009E49F3 /* SupportingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingViews.swift; sourceTree = "<group>"; };
+		CB45F57326D4517E009E49F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModelTests.swift; sourceTree = "<group>"; };
 		CB4E160926D12897007AA7FD /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 		CB4E160F26D16C6D007AA7FD /* NewsListRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListRequestTests.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				CBEE8D0326CC1F9E00519540 /* NetworkManager.swift */,
 				CBEE8D0526CC1FAF00519540 /* RequestType.swift */,
 				CBEE8D0726CC1FD100519540 /* ServiceType.swift */,
+				CB45F57326D4517E009E49F3 /* NetworkError.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				CBEE8CF726CBF89400519540 /* Article.swift in Sources */,
 				CBEE8CE326CBF11B00519540 /* NewsListView.swift in Sources */,
 				CBEE8D0226CC0E5100519540 /* NewsListViewModelType.swift in Sources */,
+				CB45F57426D4517E009E49F3 /* NetworkError.swift in Sources */,
 				CBEE8D0826CC1FD100519540 /* ServiceType.swift in Sources */,
 				CBEE8CFC26CBFFF900519540 /* NewsListRow.swift in Sources */,
 				CBEE8CE126CBF11B00519540 /* NewsAppApp.swift in Sources */,

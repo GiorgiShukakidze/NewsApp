@@ -48,13 +48,3 @@ class NetworkManager: APIService {
             .eraseToAnyPublisher()
     }
 }
-
-enum NetworkError: Error {
-    case invalidRequest
-    case internalError(Int, Data)
-    case serverError
-    case other(String)
-}
-
-
-
