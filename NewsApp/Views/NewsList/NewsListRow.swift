@@ -13,7 +13,9 @@ struct NewsListRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            articleImage
+            if article.imageURL != nil {
+                ArticleImage(image: $image)
+            }
             Text(article.title)
                 .titleStyle()
             
@@ -41,18 +43,6 @@ struct NewsListRow: View {
             UIImage.from(article.imageUrlString ?? "") { uiImage in
                 image = uiImage
             }
-        }
-    }
-    
-    @ViewBuilder
-    var articleImage: some View {
-        if article.imageURL != nil, image == nil {
-            Image(systemName: "photo")
-                .articleImageStyle()
-        }
-        if let uiImage = image {
-            Image(uiImage: uiImage)
-                .articleImageStyle()
         }
     }
 }

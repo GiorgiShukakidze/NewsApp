@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB0C9D0726CE57370042F262 /* NewsListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C9D0626CE57370042F262 /* NewsListError.swift */; };
+		CB45F57226D43828009E49F3 /* SupportingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB45F57126D43828009E49F3 /* SupportingViews.swift */; };
 		CB4E160626D1204B007AA7FD /* NewsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */; };
 		CB4E160A26D12897007AA7FD /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160926D12897007AA7FD /* MockAPIService.swift */; };
 		CB4E161026D16C6D007AA7FD /* NewsListRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160F26D16C6D007AA7FD /* NewsListRequestTests.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		CB0C9D0626CE57370042F262 /* NewsListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListError.swift; sourceTree = "<group>"; };
+		CB45F57126D43828009E49F3 /* SupportingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingViews.swift; sourceTree = "<group>"; };
 		CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModelTests.swift; sourceTree = "<group>"; };
 		CB4E160926D12897007AA7FD /* MockAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIService.swift; sourceTree = "<group>"; };
 		CB4E160F26D16C6D007AA7FD /* NewsListRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListRequestTests.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				CBEE8CFD26CC019900519540 /* Extensions.swift */,
 				CBEE8D1126CC27D800519540 /* Constants.swift */,
 				CBCF3D3926CD2448005D83A1 /* ViewModifiers.swift */,
+				CB45F57126D43828009E49F3 /* SupportingViews.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				CBEE8CFC26CBFFF900519540 /* NewsListRow.swift in Sources */,
 				CBEE8CE126CBF11B00519540 /* NewsAppApp.swift in Sources */,
 				CBCF3D3A26CD2448005D83A1 /* ViewModifiers.swift in Sources */,
+				CB45F57226D43828009E49F3 /* SupportingViews.swift in Sources */,
 				CBEE8D0626CC1FAF00519540 /* RequestType.swift in Sources */,
 				CBEE8D0D26CC202C00519540 /* NewsListRequest.swift in Sources */,
 				CBEE8D1426CC2CFB00519540 /* APIKeys.swift in Sources */,
