@@ -10,6 +10,6 @@ SwiftUI app to display News list from News API.
 - App architecture is MVVM
 - App UI is implemented using SwiftUI.
 - Networking and ViewModels are implemented using Combine framework.
-- Data is fetched using [NewsAPI](https://developer.sitoo.com/)
+- Data is fetched using [NewsAPI](https://newsapi.org/)
 - Errors are handled according to API documentation.
-- Unit tests are included for View models.
+- Unit tests are included for View model and other modules.
