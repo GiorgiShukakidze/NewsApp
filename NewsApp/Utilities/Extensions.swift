@@ -28,3 +28,7 @@ extension Image {
             .foregroundColor(Color(.lightGray))
     }
 }
+
+extension String: Identifiable {
+    public var id: String { return self }
+}

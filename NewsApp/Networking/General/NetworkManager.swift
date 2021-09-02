@@ -25,16 +25,16 @@ class NetworkManager: APIService {
             urlRequest.addValue(value, forHTTPHeaderField: key)
         }
         
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .receive(on: RunLoop.main)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse,
                       200 == httpResponse.statusCode else {
-                    let responseCode = (response as! HTTPURLResponse).statusCode
+                    let responseCode = (response as? HTTPURLResponse)?.statusCode ?? -1
+                    
                     switch responseCode {
+                    case -1:
+                        throw NetworkError.other("Invalid response")
                     case 400...499:
                         throw NetworkError.internalError(responseCode, data)
                     default:
@@ -42,7 +42,7 @@ class NetworkManager: APIService {
                     }
                 }
                 
-                return try decoder.decode(Request.Response.self, from: data)
+                return try request.decoder.decode(Request.Response.self, from: data)
             }
             .mapError { request.mapError($0) }
             .eraseToAnyPublisher()

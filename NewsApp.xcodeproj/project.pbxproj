@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CB0C9D0726CE57370042F262 /* NewsListError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0C9D0626CE57370042F262 /* NewsListError.swift */; };
+		CB38DD2E26E0BBC10010057F /* PreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB38DD2D26E0BBC10010057F /* PreviewViewModel.swift */; };
 		CB45F57226D43828009E49F3 /* SupportingViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB45F57126D43828009E49F3 /* SupportingViews.swift */; };
 		CB45F57426D4517E009E49F3 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB45F57326D4517E009E49F3 /* NetworkError.swift */; };
 		CB4E160626D1204B007AA7FD /* NewsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */; };
@@ -46,6 +47,7 @@
 
 /* Begin PBXFileReference section */
 		CB0C9D0626CE57370042F262 /* NewsListError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListError.swift; sourceTree = "<group>"; };
+		CB38DD2D26E0BBC10010057F /* PreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewModel.swift; sourceTree = "<group>"; };
 		CB45F57126D43828009E49F3 /* SupportingViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportingViews.swift; sourceTree = "<group>"; };
 		CB45F57326D4517E009E49F3 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		CB4E160526D1204B007AA7FD /* NewsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListViewModelTests.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				CBEE8CFF26CC0C0600519540 /* NewsListViewModel.swift */,
 				CBEE8D0126CC0E5100519540 /* NewsListViewModelType.swift */,
+				CB38DD2D26E0BBC10010057F /* PreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				CB45F57426D4517E009E49F3 /* NetworkError.swift in Sources */,
 				CBEE8D0826CC1FD100519540 /* ServiceType.swift in Sources */,
 				CBEE8CFC26CBFFF900519540 /* NewsListRow.swift in Sources */,
+				CB38DD2E26E0BBC10010057F /* PreviewViewModel.swift in Sources */,
 				CBEE8CE126CBF11B00519540 /* NewsAppApp.swift in Sources */,
 				CBCF3D3A26CD2448005D83A1 /* ViewModifiers.swift in Sources */,
 				CB45F57226D43828009E49F3 /* SupportingViews.swift in Sources */,

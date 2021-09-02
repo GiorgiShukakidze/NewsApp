@@ -13,26 +13,11 @@ struct NewsListRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 15) {
-            if article.imageURL != nil {
-                ArticleImage(image: $image)
-            }
+            articleImage
             Text(article.title)
                 .titleStyle()
-            
-            if let description = article.description {
-                Text(description)
-                    .descriptionStyle()
-            }
-            
-            if let url = article.url {
-                Link(destination: url, label: {
-                    Text("Tap to open details...")
-                        .font(.footnote)
-                        .italic()
-                        .foregroundColor(.secondary)
-                })
-            }
-            
+            description
+            linkToURL
             HStack {
                 Spacer()
                 Text(article.publishedDateString)
@@ -43,6 +28,33 @@ struct NewsListRow: View {
             UIImage.from(article.imageUrlString ?? "") { uiImage in
                 image = uiImage
             }
+        }
+    }
+    
+    @ViewBuilder
+    var articleImage: some View {
+        if article.imageURL != nil {
+            ArticleImage(image: $image)
+        }
+    }
+    
+    @ViewBuilder
+    var description: some View {
+        if let description = article.description {
+            Text(description)
+                .descriptionStyle()
+        }
+    }
+    
+    @ViewBuilder
+    var linkToURL: some View {
+        if let url = article.url {
+            Link(destination: url, label: {
+                Text("Tap to open details...")
+                    .font(.footnote)
+                    .italic()
+                    .foregroundColor(.secondary)
+            })
         }
     }
 }

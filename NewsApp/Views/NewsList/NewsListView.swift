@@ -9,46 +9,73 @@ import SwiftUI
 
 struct NewsListView<ViewModel: NewsListViewModelType>: View {
     @ObservedObject var viewModel: ViewModel
-    @State var isLoading: Bool = false
     
+    @State private var isLoading: Bool = false
+    @State private var alertToShow: IdentifiableAlert?
+
     var body: some View {
         ZStack {
             VStack {
-                if viewModel.state != .loading {
-                    NewsRefreshButton(refreshAction: viewModel.refresh)
-                }
+                refreshButton
                 List {
                     ForEach(viewModel.articles, id: \.id) { article in
                         NewsListRow(article: article)
                     }
                     
-                    if viewModel.hasMorePages {
-                        LoadingMoreCell()
-                            .onAppear { viewModel.fetchNextPage() }
-                    }
+                    loadingMoreView
                 }
                 .listStyle(InsetGroupedListStyle())
             }
             
-            if viewModel.state == .loading {
-                ProgressView().scaleEffect(2)
-            }
-            
-            if viewModel.state == .empty {
-                Text("No items to show...")
-            }
+            stateView
         }
-        .onChange(of: viewModel.state) { isLoading = $0 == .loading }
+        .onChange(of: viewModel.state) { handleStateChange($0) }
         .overlay(LoadingOverlay(show: $isLoading))
         .onAppear { viewModel.fetchArticles() }
-        .alert(isPresented: $viewModel.showError) {
-            Alert(title: Text("Fetching articles failed"), message: Text(viewModel.errorMessage))
+        .alert(item: $alertToShow) { $0.alert() }
+    }
+    
+    @ViewBuilder
+    var stateView: some View {
+        switch viewModel.state {
+        case .loading:
+            ProgressView().scaleEffect(2)
+        case .empty:
+            Text("No items to show...")
+        default:
+            EmptyView()
+        }
+    }
+    
+    @ViewBuilder
+    var refreshButton: some View {
+        if viewModel.state != .loading {
+            NewsRefreshButton(refreshAction: viewModel.refresh)
+        }
+    }
+    
+    @ViewBuilder
+    var loadingMoreView: some View {
+        if viewModel.hasMorePages {
+            LoadingMoreCell()
+                .onAppear { viewModel.fetchNextPage() }
+        }
+    }
+    
+    private func handleStateChange(_ state: NewsViewModelState) {
+        isLoading = state == .loading
+        
+        switch state {
+        case .error(let message):
+            alertToShow = .init(title: "Fetching articles failed", message: message)
+        default:
+            break
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsListView(viewModel: NewsListViewModel())
+        NewsListView(viewModel: PreviewViewModel())
     }
 }

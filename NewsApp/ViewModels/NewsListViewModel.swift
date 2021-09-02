@@ -10,8 +10,6 @@ import Combine
 
 class NewsListViewModel: ObservableObject, NewsListViewModelType {
     @Published private(set) var articles: [Article] = []
-    @Published private(set) var errorMessage: String = ""
-    @Published var showError: Bool = false
     @Published var state: NewsViewModelState = .idle
     
     var hasMorePages: Bool { articles.count < totalCount }
@@ -19,16 +17,12 @@ class NewsListViewModel: ObservableObject, NewsListViewModelType {
     private var cancellables: Set<AnyCancellable> = []
  
     private let service: NewsListAPI
-    
-    private let errorsSubject = PassthroughSubject<NewsListError, Never>()
-    
+        
     private var currentPage: Int = 1
     private var totalCount: Int = 0
     
     init(service: NewsListAPI = NewsListAPI()) {
         self.service = service
-        
-        bindOutputs()
     }
     
     //MARK: - User intents
@@ -37,8 +31,7 @@ class NewsListViewModel: ObservableObject, NewsListViewModelType {
         
         service.fetchNewsList(for: currentPage)
             .catch {[weak self] error -> AnyPublisher<NewsList, Never>  in
-                self?.errorsSubject.send(error)
-                self?.state = .error
+                self?.state = .error(error.errorDescription ?? "")
                 
                 return .init(Empty())
             }
@@ -60,18 +53,6 @@ class NewsListViewModel: ObservableObject, NewsListViewModelType {
         fetchArticles()
     }
     
-    private func bindOutputs() {
-        errorsSubject
-            .map { _ in true }
-            .assign(to: \.showError, on: self)
-            .store(in: &cancellables)
-        
-        errorsSubject
-            .map { error -> String in error.errorDescription ?? ""}
-            .assign(to: \.errorMessage, on: self)
-            .store(in: &cancellables)
-    }
-    
     private func handleNewData(_ newsList: NewsList) {
         if newsList.articles.isEmpty && currentPage == 1 {
             state = .empty
@@ -86,8 +67,6 @@ class NewsListViewModel: ObservableObject, NewsListViewModelType {
     private func reset() {
         articles = []
         state = .idle
-        errorMessage = ""
-        showError = false
         currentPage = 1
         totalCount = 0
     }

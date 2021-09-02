@@ -46,10 +46,10 @@ struct NewsRefreshButton: View {
 
 struct LoadingMoreCell: View {
     var body: some View {
-        HStack(alignment: .center) {
+        HStack {
             Spacer()
-            Text("Loading more...")
-                .foregroundColor(.blue)
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle(tint: .purple))
             Spacer()
         }
     }
@@ -64,5 +64,15 @@ struct LoadingOverlay: View {
                 .opacity(0.5)
                 .ignoresSafeArea()
         }
+    }
+}
+
+struct IdentifiableAlert: Identifiable {
+    var id: String
+    var alert: () -> Alert
+    
+    init(title: String, message: String) {
+        self.id = title + message
+        alert = { Alert(title: Text(title), message: Text(message), dismissButton: .default(Text("OK"))) }
     }
 }

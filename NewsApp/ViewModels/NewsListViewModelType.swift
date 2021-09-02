@@ -10,8 +10,6 @@ import Combine
 
 protocol NewsListViewModelType: ObservableObject {
     var articles: [Article] { get }
-    var showError: Bool { get set }
-    var errorMessage: String { get }
     var state: NewsViewModelState { get }
     var hasMorePages: Bool { get }
     
@@ -25,5 +23,5 @@ enum NewsViewModelState: Equatable {
     case loading
     case complete
     case empty
-    case error
+    case error(String)
 }
