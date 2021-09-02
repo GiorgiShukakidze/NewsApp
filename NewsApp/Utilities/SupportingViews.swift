@@ -27,20 +27,13 @@ struct NewsRefreshButton: View {
     var refreshAction: () -> Void
     
     var body: some View {
-        HStack {
-            Spacer()
-            Button(action: { refreshAction() }) {
-                Label(
-                    title: { Text("Refresh").font(.callout.bold()) },
-                    icon: { Image(systemName: "arrow.clockwise") }
-                )
-                
-            }
-            .padding(8)
-            .foregroundColor(.white)
-            .background(RoundedRectangle(cornerRadius: 25).foregroundColor(.purple))
-            .padding(.horizontal)
+        Button(action: { refreshAction() }) {
+            Image(systemName: "arrow.clockwise")
         }
+        .padding(6)
+        .foregroundColor(.white)
+        .background(Circle().foregroundColor(.purple))
+        .padding(.horizontal)
     }
 }
 

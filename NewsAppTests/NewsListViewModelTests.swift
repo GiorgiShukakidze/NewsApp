@@ -28,15 +28,7 @@ class NewsListViewModelTests: XCTestCase {
     
     func testfetchNewsItems() {
         //Given
-        stubForSuccessfulItem(
-            Article(
-                title: "Lore ipsum",
-                description: nil,
-                publishedAt: Date(),
-                urlString: "http://lorem.com/ipsum",
-                imageUrlString: nil
-            )
-        )
+        stubForSuccessfulItem(.mockArticle1)
         
         //When
         viewModel.fetchArticles()
@@ -48,27 +40,11 @@ class NewsListViewModelTests: XCTestCase {
     
     func testfetchNextPage() {
         //Given
-        stubForSuccessfulItem(
-            Article(
-                title: "Lore ipsum",
-                description: nil,
-                publishedAt: Date(),
-                urlString: "http://lorem.com/ipsum",
-                imageUrlString: nil
-            )
-        )
+        stubForSuccessfulItem(.mockArticle1)
         viewModel.fetchArticles()
         XCTAssertTrue(viewModel.hasMorePages)
         
-        stubForSuccessfulItem(
-            Article(
-                title: "Lore ipsum 2",
-                description: nil,
-                publishedAt: Date(),
-                urlString: "http://lorem.com/ipsum2",
-                imageUrlString: nil
-            )
-        )
+        stubForSuccessfulItem(.mockArticle2)
         
         //When
         viewModel.fetchNextPage()
@@ -81,13 +57,14 @@ class NewsListViewModelTests: XCTestCase {
     
     func testserviceErrorWhenFetching() {
         //Given
+        let errorMessage = "Error happened"
         service.stub(for: NewsListRequest.self) {
             Future { promise in
                 let error = NewsListError.badRequest(
                     .init(
                         status: .error,
                         code: "Error",
-                        message: "Error happened"
+                        message: errorMessage
                     )
                 )
                 
@@ -100,8 +77,7 @@ class NewsListViewModelTests: XCTestCase {
         viewModel.fetchArticles()
         
         //Then
-        XCTAssertTrue(viewModel.showError == true)
-        XCTAssertTrue(!viewModel.errorMessage.isEmpty)
+        XCTAssertTrue(viewModel.state == .error(errorMessage))
     }
     
     private func stubForSuccessfulItem(_ item: Article) {

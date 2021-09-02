@@ -14,24 +14,32 @@ struct NewsListView<ViewModel: NewsListViewModelType>: View {
     @State private var alertToShow: IdentifiableAlert?
 
     var body: some View {
-        ZStack {
-            VStack {
-                refreshButton
-                List {
-                    ForEach(viewModel.articles, id: \.id) { article in
-                        NewsListRow(article: article)
+        NavigationView {
+            ZStack {
+                VStack {
+                    List {
+                        ForEach(viewModel.articles, id: \.id) { article in
+                            NewsListRow(viewModel: NewsListRowViewModel(article))
+                        }
+                        
+                        loadingMoreView
                     }
-                    
-                    loadingMoreView
+                    .listStyle(InsetGroupedListStyle())
                 }
-                .listStyle(InsetGroupedListStyle())
+                
+                stateView
             }
-            
-            stateView
+            .navigationBarTitle("News List")
+            .navigationViewStyle(StackNavigationViewStyle())
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarItems(trailing: refreshButton)
         }
         .onChange(of: viewModel.state) { handleStateChange($0) }
         .overlay(LoadingOverlay(show: $isLoading))
-        .onAppear { viewModel.fetchArticles() }
+        .onAppear {
+            setupNavigationBar()
+            viewModel.fetchArticles()
+        }
         .alert(item: $alertToShow) { $0.alert() }
     }
     
@@ -62,7 +70,7 @@ struct NewsListView<ViewModel: NewsListViewModelType>: View {
         }
     }
     
-    private func handleStateChange(_ state: NewsViewModelState) {
+    private func handleStateChange(_ state: ViewModelState) {
         isLoading = state == .loading
         
         switch state {
@@ -71,6 +79,13 @@ struct NewsListView<ViewModel: NewsListViewModelType>: View {
         default:
             break
         }
+    }
+    
+    private func setupNavigationBar() {
+        let color = UIColor.purple
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: color]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: color]
     }
 }
 

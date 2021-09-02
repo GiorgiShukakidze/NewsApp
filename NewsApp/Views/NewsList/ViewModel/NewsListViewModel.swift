@@ -10,7 +10,7 @@ import Combine
 
 class NewsListViewModel: ObservableObject, NewsListViewModelType {
     @Published private(set) var articles: [Article] = []
-    @Published var state: NewsViewModelState = .idle
+    @Published var state: ViewModelState = .idle
     
     var hasMorePages: Bool { articles.count < totalCount }
     

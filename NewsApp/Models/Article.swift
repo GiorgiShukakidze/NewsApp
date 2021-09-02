@@ -13,6 +13,7 @@ struct Article: Codable, Identifiable {
     let publishedAt: Date
     let urlString: String
     let imageUrlString: String?
+    let content: String?
     
     let id: String = UUID().uuidString
     
@@ -26,7 +27,7 @@ struct Article: Codable, Identifiable {
     }
     
     enum CodingKeys: String, CodingKey {
-        case title, description, publishedAt
+        case title, description, publishedAt, content
         case urlString = "url"
         case imageUrlString = "urlToImage"
     }

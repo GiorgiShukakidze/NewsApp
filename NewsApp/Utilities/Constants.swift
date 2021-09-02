@@ -10,4 +10,5 @@ import Foundation
 enum Constants {
     static let pageSize = 15
     static let numberOfMaxRequests = 100
+    static let maxTruncatableCharacters = 200
 }
